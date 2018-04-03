@@ -1,0 +1,10 @@
+.navBarContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.navBarContainer .ui.horizontal.list {
+    display: flex;
+    align-items: center;    
+}

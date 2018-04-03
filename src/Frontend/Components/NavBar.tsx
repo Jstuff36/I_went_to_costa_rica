@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { List, Icon } from 'semantic-ui-react';
-import './NavBar.styl';
+import { Link } from 'react-router-dom';
+import './NavBar.css';
 
 export const NavBar = connect() (
      class NavBar extends React.Component {
@@ -16,13 +17,15 @@ export const NavBar = connect() (
                             Catalog
                         </List.Item>
                         <List.Item>
-                            About
+                            <Link to={'/about'}>
+                                About
+                            </Link>
                         </List.Item>
                         <List.Item>
                             Contact Us
                         </List.Item>
                     </List>
-                    <List>
+                    <List horizontal={true}>
                         <List.Item>
                             OG Mal Designs
                         </List.Item>
