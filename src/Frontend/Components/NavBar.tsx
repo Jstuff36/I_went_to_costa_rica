@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { List, Icon } from 'semantic-ui-react';
+import { List, Icon, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
@@ -14,7 +14,16 @@ export const NavBar = connect() (
                             Home
                         </List.Item>
                         <List.Item>
-                            Catalog
+                            <Dropdown text={'Catalog'}>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item>
+                                        Necklaces
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        Other
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </List.Item>
                         <List.Item>
                             <Link to={'/about'}>
