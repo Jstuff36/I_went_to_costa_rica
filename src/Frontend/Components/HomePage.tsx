@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-
+import { Carousel } from './Carousel';
 // function mapStateToProps(state) {
 //     return {};
 // }
@@ -11,25 +8,20 @@ import 'slick-carousel/slick/slick.css';
 export const HomePage = connect()(
     class HomePage extends React.Component {
         render() {
-            const settings = {
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            };
             return (
                 <div>
-                    <Slider {...settings}>
+                    <Carousel/>
+                    {/* <Slider {...settings}>
                         <div>
-                            1
+                            <img src="https://res.cloudinary.com/dax5cdjeh/image/upload/v1523210405/mal_image_1_tg3q41.jpg" />                            
                         </div>
                         <div>
-                            2
+                            <img src="https://res.cloudinary.com/dax5cdjeh/image/upload/v1523210412/mal_image_2_gasrnt.jpg"/>
                         </div>
                         <div>
-                            3
+                            <img src="https://res.cloudinary.com/dax5cdjeh/image/upload/v1523210416/mal_image_3_dstj40.jpg" />                            
                         </div>
-                    </Slider>
+                    </Slider> */}
                 </div>
             );
         }

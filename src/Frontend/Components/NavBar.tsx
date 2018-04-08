@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { List, Icon, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import './NavBar.css';
+import '../Styles/NavBar.css';
 
 export const NavBar = connect() (
      class NavBar extends React.Component {
