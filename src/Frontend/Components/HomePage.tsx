@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Carousel } from './Carousel';
+import { Button } from 'semantic-ui-react';
+import { Footer } from './Footer';
+
 // function mapStateToProps(state) {
 //     return {};
 // }
@@ -11,17 +14,15 @@ export const HomePage = connect()(
             return (
                 <div>
                     <Carousel/>
-                    {/* <Slider {...settings}>
+                    <div>
                         <div>
-                            <img src="https://res.cloudinary.com/dax5cdjeh/image/upload/v1523210405/mal_image_1_tg3q41.jpg" />                            
+                            Check out our collection                                
                         </div>
-                        <div>
-                            <img src="https://res.cloudinary.com/dax5cdjeh/image/upload/v1523210412/mal_image_2_gasrnt.jpg"/>
-                        </div>
-                        <div>
-                            <img src="https://res.cloudinary.com/dax5cdjeh/image/upload/v1523210416/mal_image_3_dstj40.jpg" />                            
-                        </div>
-                    </Slider> */}
+                        <Button>
+                            Shop Now
+                        </Button>
+                    </div>
+                    <Footer/>
                 </div>
             );
         }
