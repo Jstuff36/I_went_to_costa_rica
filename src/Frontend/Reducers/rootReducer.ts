@@ -13,8 +13,8 @@ export const initialState: StoreState = {
 };
 
 const reducers = {
-    homePageReducer: homePageReducer,
-    galleryReducer: galleryReducer 
+    homePageStore: homePageReducer,
+    galleryStore: galleryReducer 
 };
 
 const rootReducer = combineReducers(reducers);

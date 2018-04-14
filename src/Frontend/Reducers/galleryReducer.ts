@@ -1,5 +1,5 @@
 export interface GalleryStore  {
-    necklaces: string[]
+    necklaces: string[];
 }
 
 export const galleryInitialState: GalleryStore = {

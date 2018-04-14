@@ -17,7 +17,9 @@ export const NavBar = connect() (
                             <Dropdown text={'Catalog'}>
                                 <Dropdown.Menu>
                                     <Dropdown.Item>
-                                        Necklaces
+                                        <Link to={{ pathname: '/gallery', state: { itemTypeToDisplay: 'necklaces' }}}>
+                                            Necklaces
+                                        </Link>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
                                         Other
