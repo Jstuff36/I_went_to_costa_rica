@@ -6,6 +6,7 @@ import configureStore from './Frontend/Store/index';
 import { initialState } from './Frontend/Reducers/rootReducer';
 import { Route, HashRouter } from 'react-router-dom';
 import { About } from './Frontend/Components/About';
+import { Gallery } from './Frontend/Components/Gallery';
 
 const store = configureStore(initialState);
 
@@ -18,7 +19,8 @@ class App extends React.Component {
           <>
             <NavBar />      
             <Route exact={true} path="/" component={HomePage}/>
-            <Route path="/about" component={About}/>   
+            <Route path="/about" component={About}/>
+            <Route path="/gallery" component={Gallery}/>
           </>
         </HashRouter>
       </Provider>

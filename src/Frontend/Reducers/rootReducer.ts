@@ -1,16 +1,20 @@
 import { combineReducers } from 'redux';
 import homePageReducer, { HomePageStore, homePageInitialState } from './homePageReducer';
+import galleryReducer, { GalleryStore, galleryInitialState } from './galleryReducer';
 
 export interface StoreState {
     homePageStore: HomePageStore;
+    galleryStore: GalleryStore;
 }
 
 export const initialState: StoreState = {
-    homePageStore: homePageInitialState
+    homePageStore: homePageInitialState,
+    galleryStore: galleryInitialState
 };
 
 const reducers = {
-    homePageStore: homePageReducer
+    homePageReducer: homePageReducer,
+    galleryReducer: galleryReducer 
 };
 
 const rootReducer = combineReducers(reducers);
