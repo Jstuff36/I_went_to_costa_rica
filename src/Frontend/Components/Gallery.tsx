@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { StoreState } from '../Reducers/rootReducer';
 import { RouteProps } from 'react-router';
+import { Item } from '../Reducers/galleryReducer';
 import '../Styles/Gallery.css';
 
 interface OwnProps {
@@ -9,7 +10,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    galleryUrls: string[];
+    galleryUrls: Item[];
 }
 
 type ComponentProps = OwnProps & StateProps & RouteProps;
@@ -35,13 +36,17 @@ export const Gallery = connect(mapStateToProps)(
             const {galleryUrls} = this.props;
             return(
                 <div className="galleryContainer">
-                    {
-                        galleryUrls.map(url => (
-                            <div key={url} className="image" style={this.getImage(url)}>
-                                test
-                            </div>
-                        ))   
-                    }
+                    <div className="centeringContainer">
+                        {
+                            galleryUrls.map(item => (
+                                <div key={item.url} className="itemContainer">
+                                    <div className="image" style={this.getImage(item.url)} />
+                                    <div>{item.description}</div>
+                                    <div>{item.price}</div>                                
+                                </div>
+                            ))   
+                        }
+                    </div>
                 </div>
             );
         }
