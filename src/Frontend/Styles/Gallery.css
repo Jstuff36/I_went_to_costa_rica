@@ -13,6 +13,7 @@
 .galleryContainer .centeringContainer {
     display: inline-flex;
     flex-flow: row wrap;
+    justify-content: center;
 }
 
 .galleryContainer .image {
