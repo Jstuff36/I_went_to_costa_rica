@@ -11,7 +11,9 @@ export const NavBar = connect() (
                 <div className={'navBarContainer'}>
                     <List horizontal={true}>
                         <List.Item>
-                            Home
+                            <Link to={'/'}>
+                                Home
+                            </Link>
                         </List.Item>
                         <List.Item>
                             <Dropdown text={'Catalog'}>
