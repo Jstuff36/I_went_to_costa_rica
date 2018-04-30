@@ -6,15 +6,23 @@ import { Footer } from './Footer';
 import { StoreState } from '../Reducers/rootReducer';
 
 function mapStateToProps(store: StoreState) {
-    return {};
+    const { homePageStore: { homeCarouselUrls }} = store;
+    return {homeCarouselUrls};
 }
 
+interface StateProps {
+    homeCarouselUrls: string[];
+}
+
+type ComponentProps = StateProps;
+
 export const HomePage = connect(mapStateToProps)(
-    class HomePage extends React.Component {
+    class HomePage extends React.Component<ComponentProps> {
         render() {
+            const { homeCarouselUrls } = this.props;
             return (
                 <div>
-                    <Carousel/>
+                    <Carousel imgUrls={homeCarouselUrls}/>
                     <div>
                         <div>
                             Check out our collection                                

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Modal } from 'semantic-ui-react';
 import { Item } from '../Reducers/galleryReducer';
 import '../Styles/GalleryModal.css';
+import { Carousel } from './Carousel';
 
 interface OwnProps {
     isOpen: boolean;
@@ -22,7 +23,7 @@ export class GalleryModal extends React.Component<ComponentProps> {
                 size={'large'}
             >
                 <Modal.Content>
-                    {item.description}
+                    <Carousel imgUrls={item.url}/>
                 </Modal.Content>
             </Modal> )
             :

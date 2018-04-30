@@ -1,5 +1,5 @@
 export interface HomePageStore {
-    homeCarouselUrls: string[]
+    homeCarouselUrls: string[];
 }
 
 export const homePageInitialState: HomePageStore = {
