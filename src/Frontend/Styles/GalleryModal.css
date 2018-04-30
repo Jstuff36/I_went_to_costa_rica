@@ -1,0 +1,4 @@
+/* Necessary for semantic ui bug */
+.ui.page.modals.transition.visible {
+    display: flex !important;
+}

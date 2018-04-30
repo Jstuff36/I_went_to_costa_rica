@@ -16,6 +16,7 @@ interface StateProps {
 
 interface State {
     isOpen: boolean;
+    openItem: Item | null;
 }
 
 type ComponentProps = OwnProps & StateProps & RouteProps;
@@ -36,7 +37,8 @@ export const Gallery = connect(mapStateToProps)(
         constructor(props: ComponentProps) {
             super(props);
             this.state = {
-                isOpen: false
+                isOpen: false,
+                openItem: null
             };
         }
 
@@ -44,29 +46,29 @@ export const Gallery = connect(mapStateToProps)(
             return { backgroundImage: `url(${imageUrl})` };
         }
 
-        closeCB = () => this.setState({isOpen: false});
+        closeCB = () => this.setState({isOpen: false, openItem: null});
 
-        handleItemCLick = () => {
-            this.setState({isOpen: true});
+        handleItemCLick = (item) => {
+            this.setState({isOpen: true, openItem: item});
         }
 
         render() {
             const {galleryUrls} = this.props;
-            const {isOpen} = this.state;
+            const {isOpen, openItem} = this.state;
             return(
                 <div className="galleryContainer">
                     <div className="centeringContainer">
                         {
                             galleryUrls.map(item => (
                                 <div key={item.url[0]} className="itemContainer">
-                                    <div onClick={this.handleItemCLick} className="image" style={this.getImage(item.url[0])} />
+                                    <div onClick={() => this.handleItemCLick(item)} className="image" style={this.getImage(item.url[0])} />
                                     <div>{item.description}</div>
                                     <div>{item.price}</div>                                
                                 </div>
                             ))   
                         }
                     </div>
-                    {isOpen ? <GalleryModal isOpen={isOpen} closeCB={this.closeCB}/> : null}
+                    {isOpen ? <GalleryModal item={openItem as Item} isOpen={isOpen} closeCB={this.closeCB}/> : null}
                 </div>
             );
         }
