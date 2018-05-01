@@ -2,3 +2,13 @@
 .ui.page.modals.transition.visible {
     display: flex !important;
 }
+
+.ui.modal.galleryModalContainer .content {
+    display: flex;
+}
+
+.galleryModalContainer .rightContent {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
