@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { List, Icon, Dropdown } from 'semantic-ui-react';
+import { List, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import '../Styles/NavBar.css';
+import { CartPopup } from './CartPopup';
 
 export const NavBar = connect() (
      class NavBar extends React.Component {
@@ -45,7 +46,7 @@ export const NavBar = connect() (
                     </List>
                     <List horizontal={true}>
                         <List.Item>
-                            <Icon name={'shopping cart'}/>
+                            <CartPopup/>
                         </List.Item>
                         <List.Item>
                             $0.00
