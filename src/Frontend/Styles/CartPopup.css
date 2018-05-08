@@ -1,0 +1,20 @@
+.ui.visible.popup.cartPopupContainer {
+    display: flex !important;
+}
+
+.cartPopupContainer .leftContainer {
+    width: 50%;
+}
+
+.cartPopupContainer .rightContainer {
+    width: 50%;
+}
+
+.cartPopupContainer .image {
+    width: 100px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 2px;
+}
