@@ -19,6 +19,7 @@ interface State {
     activeItem: Item | null;
 }
 
+// Router Own Props are passed into RouteComponentProps
 type OwnProps = RouteComponentProps<{}>;
 
 type ComponentProps = StateProps & OwnProps;
