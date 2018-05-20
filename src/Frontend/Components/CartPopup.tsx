@@ -54,7 +54,7 @@ export const CartPopup = withRouter(
                                 selectedItems.map(item => (
                                     <List.Item key={item.url[0]}>
                                         <div>
-                                            {item.description}
+                                            {item.name}
                                         </div>
                                         <div>
                                             {item.price}

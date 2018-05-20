@@ -8,6 +8,7 @@ export const shoppingCartInitialState: ShoppingCartStore = {
     selectedItems: [
         {
             url: ['https://res.cloudinary.com/dax5cdjeh/image/upload/v1523711934/necklace_1_n5rmdd.png'],
+            name: 'some item',
             description: 'earew',
             price: 25
         }

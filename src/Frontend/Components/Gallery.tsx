@@ -46,29 +46,29 @@ export const Gallery = connect(mapStateToProps)(
             return { backgroundImage: `url(${imageUrl})` };
         }
 
-        closeCB = () => this.setState({isOpen: false, openItem: null});
+        closeCB = () => this.setState({ isOpen: false, openItem: null });
 
         handleItemCLick = (item) => {
-            this.setState({isOpen: true, openItem: item});
+            this.setState({ isOpen: true, openItem: item });
         }
 
         render() {
-            const {galleryUrls} = this.props;
-            const {isOpen, openItem} = this.state;
-            return(
+            const { galleryUrls } = this.props;
+            const { isOpen, openItem } = this.state;
+            return (
                 <div className="galleryContainer">
                     <div className="centeringContainer">
                         {
                             galleryUrls.map(item => (
                                 <div key={item.url[0]} className="itemContainer">
                                     <div onClick={() => this.handleItemCLick(item)} className="image" style={this.getImage(item.url[0])} />
-                                    <div>{item.description}</div>
-                                    <div>{item.price}</div>                                
+                                    <div>{`${item.name} - ${item.description}`}</div>
+                                    <div>{item.price}</div>
                                 </div>
-                            ))   
+                            ))
                         }
                     </div>
-                    {isOpen ? <GalleryModal item={openItem as Item} isOpen={isOpen} closeCB={this.closeCB}/> : null}
+                    {isOpen ? <GalleryModal item={openItem as Item} isOpen={isOpen} closeCB={this.closeCB} /> : null}
                 </div>
             );
         }
