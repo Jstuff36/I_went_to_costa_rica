@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { StoreState } from '../Reducers/rootReducer';
-import { RouteProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { Item } from '../Reducers/galleryReducer';
 import '../Styles/Gallery.css';
 import { GalleryModal } from './GalleryModal';
@@ -19,10 +19,18 @@ interface State {
     openItem: Item | null;
 }
 
-type ComponentProps = OwnProps & StateProps & RouteProps;
+type ComponentProps = StateProps & RouteComponentProps<OwnProps>;
 
 const mapStateToProps = (store: StoreState, props: ComponentProps): StateProps => {
-    const itemTypeToDisplay = props.location!.state ? props.location!.state.itemTypeToDisplay : 'necklaces';
+    let itemTypeToDisplay;
+    if (props.location.search) {
+        const params = new URLSearchParams(props.location.search);
+        itemTypeToDisplay = params.get('category');
+    } else {
+        props.history.push({search: `?category=necklaces`});
+        itemTypeToDisplay = 'necklaces';
+    }
+
     const {
         galleryStore
     } = store;

@@ -1,12 +1,20 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { List, Dropdown } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import '../Styles/NavBar.css';
 import { CartPopup } from './CartPopup';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 
-export const NavBar = connect() (
-     class NavBar extends React.Component {
+export const NavBar = withRouter(
+    class NavBar extends React.Component<RouteComponentProps<{}>> {
+
+        handleDropdownClick = (item) => {
+            const { history } = this.props;
+            history.push({
+                pathname: '/gallery',
+                search: `?category=${item}`
+            });
+        }
+
         render() {
             return (
                 <div className={'navBarContainer'}>
@@ -20,9 +28,9 @@ export const NavBar = connect() (
                             <Dropdown text={'Catalog'}>
                                 <Dropdown.Menu>
                                     <Dropdown.Item>
-                                        <Link to={{ pathname: '/gallery', state: { itemTypeToDisplay: 'necklaces' }}}>
+                                        <div onClick={() => this.handleDropdownClick('necklaces')}>
                                             Necklaces
-                                        </Link>
+                                        </div>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
                                         Other
