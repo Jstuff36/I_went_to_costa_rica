@@ -7,12 +7,12 @@ import '../Styles/CartPopup.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 const mapStateToProps = (store: StoreState) => {
-    const { shoppingCartStore: { selectedItems } } = store;
-    return { selectedItems };
+    const { shoppingCartStore } = store;
+    return { selectedItems: shoppingCartStore };
 };
 
 interface StateProps {
-    selectedItems: Item[];
+    [id: number]: Item;
 }
 
 interface State {

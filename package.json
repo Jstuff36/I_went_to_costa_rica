@@ -6,6 +6,7 @@
     "@types/react-redux": "^5.0.15",
     "@types/react-router": "^4.0.25",
     "@types/react-router-dom": "^4.2.6",
+    "@types/redux-actions": "^2.3.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-redux": "^5.0.7",
@@ -14,8 +15,10 @@
     "react-scripts-ts": "2.14.0",
     "react-semantic-ui": "^0.2.0",
     "redux": "^3.7.2",
+    "redux-actions": "^2.3.2",
     "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.79.0"
+    "semantic-ui-react": "^0.79.0",
+    "uuid-v4": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",

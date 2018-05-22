@@ -1,23 +1,28 @@
 import { Item } from './galleryReducer';
+import { createAction, Action } from 'redux-actions';
 
 export interface ShoppingCartStore {
-    selectedItems: Item[];
+    [id: number]: Item;
 }
 
-export const shoppingCartInitialState: ShoppingCartStore = {
-    selectedItems: [
-        {
-            url: ['https://res.cloudinary.com/dax5cdjeh/image/upload/v1523711934/necklace_1_n5rmdd.png'],
-            name: 'some item',
-            description: 'earew',
-            price: 25
-        }
-    ]
-};
+export const shoppingCartInitialState: ShoppingCartStore = {};
+
+type AddItems = 'addItems';
+const AddItems: AddItems = 'addItems';
+
+interface AddItemAction extends Action<{items: Item[]}> {
+    type: AddItems
+}
+
+const addItems = createAction<{items: Item[]}>(AddItems)
+
+type Actions = AddItemAction
 
 // FIXME change action type when creating them
-export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: any) {
+export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: Actions) {
     switch (action.type) {
+        case AddItems:
+        
         default:
             return state;
     }
