@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button } from 'semantic-ui-react';
+import { Modal, Button, Icon } from 'semantic-ui-react';
 import { Item } from '../Reducers/galleryReducer';
 import '../Styles/GalleryModal.css';
 import { Carousel } from './Carousel';
 import { shoppingCartActions } from '../Reducers/shoppingCartReducer';
+import { StoreState } from '../Reducers/rootReducer';
 
 interface OwnProps {
     isOpen: boolean;
@@ -12,21 +13,41 @@ interface OwnProps {
     item: Item;
 }
 
-const mapStateToProps = () => {
+interface State {
+    quantity: number;
 }
+
+const mapStateToProps = (store: StoreState) => {
+    return {};
+};
 
 type ComponentProps = OwnProps & typeof shoppingCartActions;
 
 export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
-    class GalleryModal extends React.Component<ComponentProps> {
+    class GalleryModal extends React.Component<ComponentProps, State> {
         
+        state = {
+            quantity: 0
+        };
+
         handleAddItemClick = () => {
+            const {quantity} = this.state;
             const { item, addItems } = this.props;
+            addItems({
+                item,
+                quantity
+            });
+        }
+
+        handleDecincrement = (newQuantity) => {
+            this.setState(({ quantity }: State) => ({
+                quantity: newQuantity < 0 ? 0 : newQuantity
+            }));
         }
 
         render() {
             const {isOpen, closeCB, item} = this.props;
-
+            const {quantity} = this.state;
             return (
                 isOpen ? (
                 <Modal
@@ -44,7 +65,32 @@ export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
                             <div>
                                 {item.price}
                             </div>
-                            <Button onClick={}>Add to Cart</Button>
+                            <div>
+                                Quantity
+                                <Button 
+                                    icon={true} 
+                                    onClick={() => this.handleDecincrement(quantity - 1)}
+                                >
+                                    <Icon 
+                                        name="minus" 
+                                    />
+                                </Button>
+                                {quantity}
+                                <Button 
+                                    icon={true} 
+                                    onClick={() => this.setState(({ quantity }: State) => ({
+                                        quantity: quantity + 1
+                                    }))}
+                                >
+                                    <Icon 
+                                        name="plus" 
+                                    />
+                                </Button>
+                            </div>
+                            <Button 
+                            >
+                                Add to Cart
+                            </Button>
                         </div>
                     </Modal.Content>
                 </Modal> )
@@ -53,4 +99,4 @@ export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
             );
         }
     }
-)
+);

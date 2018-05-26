@@ -27,7 +27,7 @@ export type ShoppingCartActions = AddItemAction;
 
 export const shoppingCartActions = {
     addItems
-}
+};
 
 // FIXME change action type when creating them
 export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: ShoppingCartActions) {
