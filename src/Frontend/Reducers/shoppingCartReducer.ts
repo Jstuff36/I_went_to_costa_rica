@@ -23,10 +23,14 @@ interface AddItemAction extends Action<CartItem> {
 
 export const addItems = createAction<CartItem>(AddItems);
 
-type Actions = AddItemAction;
+export type ShoppingCartActions = AddItemAction;
+
+export const shoppingCartActions = {
+    addItems
+}
 
 // FIXME change action type when creating them
-export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: Actions) {
+export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: ShoppingCartActions) {
     const {type, payload} = action;
     switch (type) {
         case AddItems:
