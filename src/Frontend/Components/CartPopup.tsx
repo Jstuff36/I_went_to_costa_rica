@@ -2,21 +2,21 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Popup, Icon, List, Button } from 'semantic-ui-react';
 import { StoreState } from '../Reducers/rootReducer';
-import { Item } from '../Reducers/galleryReducer';
+import { CartItem } from '../Reducers/shoppingCartReducer';
 import '../Styles/CartPopup.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 const mapStateToProps = (store: StoreState) => {
-    const { shoppingCartStore } = store;
-    return { selectedItems: shoppingCartStore };
+    const { shoppingCartStore: {cartItems} } = store;
+    return { cartItems };
 };
 
 interface StateProps {
-    [id: number]: Item;
+    cartItems: CartItem[];
 }
 
 interface State {
-    activeItem: Item | null;
+    activeItem: CartItem | null;
 }
 
 // Router Own Props are passed into RouteComponentProps
@@ -31,7 +31,7 @@ export const CartPopup = withRouter(
             constructor(props: ComponentProps) {
                 super(props);
                 this.state = {
-                    activeItem: props.selectedItems[0] || null
+                    activeItem: props.cartItems[0] || null
                 };
             }
 
@@ -40,7 +40,7 @@ export const CartPopup = withRouter(
             }
 
             render() {
-                const { selectedItems, history } = this.props;
+                const { cartItems, history } = this.props;
                 const { activeItem } = this.state;
                 return (
                     <Popup
@@ -51,7 +51,7 @@ export const CartPopup = withRouter(
                     >
                         <List className={'leftContainer'}>
                             {
-                                selectedItems.map(item => (
+                                cartItems.map(({item, quantity}) => (
                                     <List.Item key={item.url[0]}>
                                         <div>
                                             {item.name}
@@ -59,13 +59,15 @@ export const CartPopup = withRouter(
                                         <div>
                                             {item.price}
                                         </div>
+                                        <div>
+                                            {quantity}
+                                        </div>
                                     </List.Item>
-                                ))
-                            }
+                                ))}
                         </List>
                         <div className={'rightContainer'}>
                             <div>
-                                {activeItem ? <div className="image" style={this.getImage(activeItem.url[0])} /> : null}
+                                {activeItem ? <div className="image" style={this.getImage(activeItem.item.url[0])} /> : null}
                             </div>
                             <Button onClick={() => history.push('./checkout')}>Proceed to Checkout</Button>
                         </div>

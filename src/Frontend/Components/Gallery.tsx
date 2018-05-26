@@ -56,7 +56,7 @@ export const Gallery = connect(mapStateToProps)(
 
         closeCB = () => this.setState({ isOpen: false, openItem: null });
 
-        handleItemCLick = (item) => {
+        handleItemClick = (item) => {
             this.setState({ isOpen: true, openItem: item });
         }
 
@@ -69,7 +69,7 @@ export const Gallery = connect(mapStateToProps)(
                         {
                             galleryUrls.map(item => (
                                 <div key={item.url[0]} className="itemContainer">
-                                    <div onClick={() => this.handleItemCLick(item)} className="image" style={this.getImage(item.url[0])} />
+                                    <div onClick={() => this.handleItemClick(item)} className="image" style={this.getImage(item.url[0])} />
                                     <div>{`${item.name} - ${item.description}`}</div>
                                     <div>{item.price}</div>
                                 </div>

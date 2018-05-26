@@ -13,8 +13,14 @@ interface OwnProps {
 type ComponentProps = OwnProps;
 
 export class GalleryModal extends React.Component<ComponentProps> {
+    
+    handleAddItemClick = () => {
+        const {item} = this.props;
+    }
+
     render() {
         const {isOpen, closeCB, item} = this.props;
+
         return (
             isOpen ? (
             <Modal
@@ -32,7 +38,7 @@ export class GalleryModal extends React.Component<ComponentProps> {
                         <div>
                             {item.price}
                         </div>
-                        <Button>Add to Cart</Button>
+                        <Button onClick={}>Add to Cart</Button>
                     </div>
                 </Modal.Content>
             </Modal> )
