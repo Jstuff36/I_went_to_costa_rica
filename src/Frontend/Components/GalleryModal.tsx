@@ -88,6 +88,7 @@ export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
                                 </Button>
                             </div>
                             <Button 
+                                onClick={this.handleAddItemClick}
                             >
                                 Add to Cart
                             </Button>

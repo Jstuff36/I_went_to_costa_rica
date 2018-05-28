@@ -34,9 +34,8 @@ export default function shoppingCartReducer(state: ShoppingCartStore = shoppingC
     const {type, payload} = action;
     switch (type) {
         case AddItems:
-           const {} = action;
            return {
-            cartItem: [
+            cartItems: [
                 ...state.cartItems.filter(cartItem => cartItem.item.id !== payload!.item.id),
                 payload
             ]               
