@@ -23,15 +23,25 @@ interface AddItemAction extends Action<CartItem> {
 
 export const addItems = createAction<CartItem>(AddItems);
 
-export type ShoppingCartActions = AddItemAction;
+type RemoveItem = 'removeItem';
+const RemoveItem: RemoveItem = 'removeItem';
+
+interface RemoveItemAction extends Action<number> {
+    type: RemoveItem;
+}
+
+export const removeItem = createAction<number>(RemoveItem);
+
+export type ShoppingCartActions = AddItemAction | RemoveItemAction;
 
 export const shoppingCartActions = {
-    addItems
+    addItems,
+    removeItem
 };
 
 // FIXME change action type when creating them
-export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: ShoppingCartActions) {
-    const {type, payload} = action;
+export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: any) {
+    const { type, payload } = action;    
     switch (type) {
         case AddItems:
            return {
@@ -39,6 +49,12 @@ export default function shoppingCartReducer(state: ShoppingCartStore = shoppingC
                 ...state.cartItems.filter(cartItem => cartItem.item.id !== payload!.item.id),
                 payload
             ]               
+           };
+        case RemoveItem:
+           return {
+               cartItems: [
+                   ...state.cartItems.filter(cartItem => cartItem.item.id !== payload)
+               ]
            };
         default:
             return state;

@@ -5,6 +5,7 @@ import { StoreState } from '../Reducers/rootReducer';
 import { CartItem } from '../Reducers/shoppingCartReducer';
 import '../Styles/CartPopup.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { shoppingCartActions } from '../Reducers/shoppingCartReducer';
 
 const mapStateToProps = (store: StoreState) => {
     const { shoppingCartStore: {cartItems} } = store;
@@ -22,10 +23,10 @@ interface State {
 // Router Own Props are passed into RouteComponentProps
 type OwnProps = RouteComponentProps<{}>;
 
-type ComponentProps = StateProps & OwnProps;
+type ComponentProps = StateProps & OwnProps & typeof shoppingCartActions;
 
 export const CartPopup = withRouter(
-    connect<StateProps>(mapStateToProps)(
+    connect<StateProps>(mapStateToProps, shoppingCartActions)(
         class CartPopup extends React.Component<ComponentProps, State> {
 
             constructor(props: ComponentProps) {
@@ -40,7 +41,7 @@ export const CartPopup = withRouter(
             }
 
             render() {
-                const { cartItems, history } = this.props;
+                const { cartItems, history, removeItem } = this.props;
                 const { activeItem } = this.state;
                 return (
                     <Popup
@@ -49,28 +50,38 @@ export const CartPopup = withRouter(
                         position={'bottom right'}
                         className={'cartPopupContainer'}
                     >
-                        <List className={'leftContainer'}>
-                            {
-                                cartItems.map(({item, quantity}) => (
-                                    <List.Item key={item.url[0]}>
-                                        <div>
-                                            {item.name}
-                                        </div>
-                                        <div>
-                                            {item.price}
-                                        </div>
-                                        <div>
-                                            {quantity}
-                                        </div>
-                                    </List.Item>
-                                ))}
-                        </List>
-                        <div className={'rightContainer'}>
-                            <div>
-                                {activeItem ? <div className="image" style={this.getImage(activeItem.item.url[0])} /> : null}
+                    {
+                    cartItems.length ? 
+                        <>
+                            <List className={'leftContainer'}>
+                                {
+                                    cartItems.map(({item, quantity}) => (
+                                        <List.Item key={item.url[0]}>
+                                            <Icon onClick={() => removeItem(item.id)} name={'minus circle'} color={'red'}/>
+                                            <div>
+                                                {item.name}
+                                            </div>
+                                            <div>
+                                                {`Price: ${item.price}`}
+                                            </div>
+                                            <div>
+                                                {`Quantity: ${quantity}`}
+                                            </div>
+                                        </List.Item>
+                                    ))}
+                            </List>
+                            <div className={'rightContainer'}>
+                                <div>
+                                    {activeItem ? <div className="image" style={this.getImage(activeItem.item.url[0])} /> : null}
+                                </div>
+                                <Button onClick={() => history.push('./checkout')}>Proceed to Checkout</Button>
                             </div>
-                            <Button onClick={() => history.push('./checkout')}>Proceed to Checkout</Button>
+                        </>
+                        :
+                        <div>
+                            Your shopping cart is empty.
                         </div>
+                    }
                     </Popup>
                 );
             }

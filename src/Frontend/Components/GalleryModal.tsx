@@ -32,11 +32,12 @@ export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
 
         handleAddItemClick = () => {
             const {quantity} = this.state;
-            const { item, addItems } = this.props;
+            const {closeCB, item, addItems } = this.props;
             addItems({
                 item,
                 quantity
             });
+            closeCB();
         }
 
         handleDecincrement = (newQuantity) => {
@@ -88,6 +89,7 @@ export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
                                 </Button>
                             </div>
                             <Button 
+                                disabled={quantity === 0}
                                 onClick={this.handleAddItemClick}
                             >
                                 Add to Cart
