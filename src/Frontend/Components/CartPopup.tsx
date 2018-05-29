@@ -23,13 +23,14 @@ interface State {
 // Router Own Props are passed into RouteComponentProps
 type OwnProps = RouteComponentProps<{}>;
 
-type ComponentProps = StateProps & OwnProps & typeof shoppingCartActions;
+type ComponentProps = StateProps & OwnProps;
+type DispatchProps = typeof shoppingCartActions;
 
 export const CartPopup = withRouter(
-    connect<StateProps>(mapStateToProps, shoppingCartActions)(
-        class CartPopup extends React.Component<ComponentProps, State> {
+    connect<StateProps, DispatchProps>(mapStateToProps, shoppingCartActions)(
+        class CartPopup extends React.Component<ComponentProps & DispatchProps, State> {
 
-            constructor(props: ComponentProps) {
+            constructor(props: ComponentProps & DispatchProps) {
                 super(props);
                 this.state = {
                     activeItem: props.cartItems[0] || null
