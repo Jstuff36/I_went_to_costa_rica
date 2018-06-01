@@ -74,9 +74,7 @@ export const NavBar = withRouter(
                                 <CartPopup/>
                             </List.Item>
                             <List.Item>
-                                {
-                                    // cartItems.reduce(({item, quantity}, acc) => item.price * quantity + acc, 0)
-                                }
+                                {cartItems.reduce((total, {item, quantity}: CartItem) => item.price * quantity + total, 0)}
                             </List.Item>
                         </List>
                     </div>
@@ -84,4 +82,4 @@ export const NavBar = withRouter(
             }
         }
     )
-)
+);
