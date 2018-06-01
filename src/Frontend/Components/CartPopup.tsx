@@ -2,10 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Popup, Icon, List, Button } from 'semantic-ui-react';
 import { StoreState } from '../Reducers/rootReducer';
-import { CartItem } from '../Reducers/shoppingCartReducer';
+import { CartItem, shoppingCartActions } from '../Reducers/shoppingCartReducer';
 import '../Styles/CartPopup.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { shoppingCartActions } from '../Reducers/shoppingCartReducer';
 
 const mapStateToProps = (store: StoreState) => {
     const { shoppingCartStore: {cartItems} } = store;

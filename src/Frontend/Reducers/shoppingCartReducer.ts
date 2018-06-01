@@ -40,20 +40,19 @@ export const shoppingCartActions = {
 };
 
 // FIXME change action type when creating them
-export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: any) {
-    const { type, payload } = action;    
-    switch (type) {
+export default function shoppingCartReducer(state: ShoppingCartStore = shoppingCartInitialState, action: ShoppingCartActions) {  
+    switch (action.type) {
         case AddItems:
            return {
             cartItems: [
-                ...state.cartItems.filter(cartItem => cartItem.item.id !== payload!.item.id),
-                payload
+                ...state.cartItems.filter(cartItem => cartItem.item.id !== action.payload!.item.id),
+                action.payload
             ]               
            };
         case RemoveItem:
            return {
                cartItems: [
-                   ...state.cartItems.filter(cartItem => cartItem.item.id !== payload)
+                   ...state.cartItems.filter(cartItem => cartItem.item.id !== action.payload)
                ]
            };
         default:
