@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react';
 
 interface State {
     activeIdx: number;
+    imageElements: JSX.Element[];
 }
 
 interface OwnProps {
@@ -18,11 +19,14 @@ export class Carousel extends React.Component<OwnProps, State> {
         super(props);
         this.state = {
             activeIdx: 0,
+            imageElements: []
         };
     }
 
     componentDidMount() {
-        this.timerID = setInterval(() => this.activeIdxCounter(), 5000);
+        const { imgUrls } = this.props;
+        const imageElements: JSX.Element[] = imgUrls.map(url => <div key={url} className="image" style={{ backgroundImage: `url(${url})` }} />);
+        this.setState({ imageElements }, () => this.timerID = setInterval(() => this.activeIdxCounter(), 5000));
     }
 
     componentWillUnmount() {
@@ -43,19 +47,17 @@ export class Carousel extends React.Component<OwnProps, State> {
         if (activeIdx + delta < 0) {
             this.setState(() => ({ activeIdx: imgUrls.length - 1 }));
         } else {
-            this.setState(() => ({ activeIdx: (activeIdx + delta) % imgUrls.length }));                
+            this.setState(() => ({ activeIdx: (activeIdx + delta) % imgUrls.length }));
         }
     }
 
     render() {
-        const { activeIdx } = this.state;
-        const { imgUrls } = this.props;
+        const { activeIdx, imageElements } = this.state;
         return (
             <div className="carouselContainer">
-                <Icon size="big" name="arrow left" onClick={() => this.changeIdx(-1)}/>
-                <div className="image" style={{ backgroundImage: `url(${imgUrls[activeIdx]})` }}/>
-                {/* <img src={imgUrls[activeIdx]} height="300"/> */}
-                <Icon size="big" name="arrow right" onClick={() => this.changeIdx(1)}/>
+                <Icon size="big" name="arrow left" onClick={() => this.changeIdx(-1)} />
+                {imageElements[activeIdx]}
+                <Icon size="big" name="arrow right" onClick={() => this.changeIdx(1)} />
             </div>
         );
     }
