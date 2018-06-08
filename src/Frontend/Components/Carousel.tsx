@@ -55,9 +55,11 @@ export class Carousel extends React.Component<OwnProps, State> {
         const { activeIdx, imageElements } = this.state;
         return (
             <div className="carouselContainer">
-                <Icon size="big" name="arrow left" onClick={() => this.changeIdx(-1)} />
-                {imageElements[activeIdx]}
-                <Icon size="big" name="arrow right" onClick={() => this.changeIdx(1)} />
+                <div className="arrowContainer">
+                    <Icon size="big" name="arrow left" onClick={() => this.changeIdx(-1)} />
+                    <Icon size="big" name="arrow right" onClick={() => this.changeIdx(1)} />
+                </div>
+                {imageElements[activeIdx]}                
             </div>
         );
     }

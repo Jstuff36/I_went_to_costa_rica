@@ -32,7 +32,7 @@ export const HomePage = withRouter(
                 return (
                     <div>
                         <Carousel imgUrls={homeCarouselUrls}/>
-                        <div>
+                        <div className={'homePageWorkSpace'}>
                             <div>
                                 Check out our collection                                
                             </div>
