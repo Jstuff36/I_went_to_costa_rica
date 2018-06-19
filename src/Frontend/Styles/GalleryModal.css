@@ -12,3 +12,30 @@
     flex-direction: column;
     padding-left: 20px;
 }
+
+.galleryModalContainer .name {
+    font-size: 20px;
+}
+
+.galleryModalContainer .price {
+    padding: 5px 0;
+}
+
+.galleryModalContainer .quantityContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.galleryModalContainer .buttonContainer {
+    display: flex;
+    padding: 5px 0 15px;
+}
+
+.buttonContainer .counter {
+    padding: 8px 5px 0;
+    font-size: 15px;
+}
+
+.galleryModalContainer .ui.button.icon {
+    margin: 0;
+}

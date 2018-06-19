@@ -60,33 +60,39 @@ export const GalleryModal = connect(mapStateToProps, shoppingCartActions)(
                     <Modal.Content>
                         <Carousel imgUrls={item.url}/>
                         <div className={'rightContent'}>
-                            <div>
-                                {item.description}
+                            <div className={'name'}>
+                                {item.name}
                             </div>
-                            <div>
-                                {item.price}
+                            <div className={'price'}>
+                                {`$${item.price}`}
                             </div>
-                            <div>
-                                Quantity
-                                <Button 
-                                    icon={true} 
-                                    onClick={() => this.handleDecincrement(quantity - 1)}
-                                >
-                                    <Icon 
-                                        name="minus" 
-                                    />
-                                </Button>
-                                {quantity}
-                                <Button 
-                                    icon={true} 
-                                    onClick={() => this.setState(({ quantity }: State) => ({
-                                        quantity: quantity + 1
-                                    }))}
-                                >
-                                    <Icon 
-                                        name="plus" 
-                                    />
-                                </Button>
+                            <div className={'quantityContainer'}>
+                                <div>
+                                    Quantity                                            
+                                </div>
+                                <div className={'buttonContainer'}>
+                                    <Button 
+                                        icon={true} 
+                                        onClick={() => this.handleDecincrement(quantity - 1)}
+                                    >
+                                        <Icon 
+                                            name="minus" 
+                                        />
+                                    </Button>
+                                    <div className={'counter'}>
+                                        {quantity}                                        
+                                    </div>
+                                    <Button 
+                                        icon={true} 
+                                        onClick={() => this.setState(({ quantity }: State) => ({
+                                            quantity: quantity + 1
+                                        }))}
+                                    >
+                                        <Icon 
+                                            name="plus" 
+                                        />
+                                    </Button>
+                                </div>
                             </div>
                             <Button 
                                 disabled={quantity === 0}
