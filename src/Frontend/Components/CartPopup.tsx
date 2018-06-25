@@ -29,15 +29,31 @@ export const CartPopup = withRouter(
     connect<StateProps, DispatchProps>(mapStateToProps, shoppingCartActions)(
         class CartPopup extends React.Component<ComponentProps & DispatchProps, State> {
 
+            static getDerivedStateFromProps(props: ComponentProps, state: State): Partial<State> {
+                const { activeItem } = state;
+                const { cartItems } = props;
+                if (activeItem) {
+                    return {activeItem};
+                } else if (cartItems) {
+                    return {activeItem: cartItems[0]};
+                } else {
+                    return {activeItem: null};
+                }
+            }
+
             constructor(props: ComponentProps & DispatchProps) {
                 super(props);
                 this.state = {
-                    activeItem: props.cartItems[0] || null
+                    activeItem: null
                 };
             }
 
             getImage = (imageUrl: string) => {
                 return { backgroundImage: `url(${imageUrl})` };
+            }
+
+            setActiveItem = (activeItem: CartItem) => {
+                this.setState({activeItem});
             }
 
             render() {
@@ -55,17 +71,17 @@ export const CartPopup = withRouter(
                         <>
                             <List className={'leftContainer'}>
                                 {
-                                    cartItems.map(({item, quantity}) => (
-                                        <List.Item key={item.url[0]}>
-                                            <Icon onClick={() => removeItem(item.id)} name={'minus circle'} color={'red'}/>
+                                    cartItems.map((cartItem) => (
+                                                <List.Item onMouseEnter={() => this.setState({ activeItem: cartItem })} key={cartItem.item.url[0]}>
+                                                    <Icon onClick={() => removeItem(cartItem.item.id)} name={'minus circle'} color={'red'}/>
                                             <div>
-                                                {item.name}
+                                                {cartItem.item.name}
                                             </div>
                                             <div>
-                                                {`Price: ${item.price}`}
+                                                {`Price: ${cartItem.item.price}`}
                                             </div>
                                             <div>
-                                                {`Quantity: ${quantity}`}
+                                                {`Quantity: ${cartItem.quantity}`}
                                             </div>
                                         </List.Item>
                                     ))}
