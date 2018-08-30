@@ -13,7 +13,6 @@ const store = configureStore(initialState);
 
 class App extends React.Component {
   render() {
-    console.log(HomePage);
     return (
       <Provider store={store}>
         <HashRouter>
